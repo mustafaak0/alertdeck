@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AlertDeck — SOC Alert Triage</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="logo">🛡️</span> Alert<b>Deck</b>
+      <span class="brand-sub">SOC alert triage</span>
+    </div>
+    <div class="topbar-actions">
+      <span id="poll-dot" class="poll-dot" title="Auto-refresh every 20s"></span>
+      <button id="btn-refresh" class="btn" title="Refresh now">⟳ Refresh</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="stats" id="stats-cards"></section>
+
+    <section class="overview">
+      <div class="panel">
+        <h3>Detections — last 14 days</h3>
+        <div id="timeline" class="timeline"></div>
+      </div>
+      <div class="panel">
+        <h3>Severity &amp; status</h3>
+        <div id="dist" class="dist"></div>
+      </div>
+      <div class="panel">
+        <h3>Top talkers</h3>
+        <div id="tops" class="tops"></div>
+      </div>
+    </section>
+
+    <section class="filters">
+      <input id="f-q" type="search" placeholder="Search rule, IP, user, host…" autocomplete="off">
+      <select id="f-severity"></select>
+      <select id="f-status"></select>
+      <select id="f-source"></select>
+      <select id="f-sort">
+        <option value="newest">Newest first</option>
+        <option value="severity">Severity first</option>
+        <option value="oldest">Oldest first</option>
+      </select>
+    </section>
+
+    <section class="table-wrap panel">
+      <table class="alerts">
+        <thead>
+          <tr>
+            <th>ID</th><th>Detected</th><th>Sev</th><th>Status</th>
+            <th>Source</th><th>Rule</th><th>Src IP</th><th>User</th><th>Assignee</th>
+          </tr>
+        </thead>
+        <tbody id="alerts-body"></tbody>
+      </table>
+      <div id="empty" class="empty" hidden>No alerts match the current filters.<br>
+        <span class="dim">Ingest via <code>alertdeck demo</code>, <code>alertdeck import</code> or <code>POST /api/alerts</code>.</span>
+      </div>
+    </section>
+  </main>
+
+  <div id="backdrop" class="backdrop" hidden></div>
+  <aside id="drawer" class="drawer" hidden></aside>
+
+  <div id="toast" class="toast" hidden></div>
+
+  <footer>
+    AlertDeck — local-first triage workbench ·
+    <span class="dim">REST API at <code>/docs</code></span>
+  </footer>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

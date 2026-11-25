@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "alertdeck"
+version = "0.1.0"
+description = "Lightweight alert triage workbench for SOC analysts - CLI + web dashboard, SQLite-backed."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "mustafaak0" }]
+keywords = ["soc", "security", "alerts", "triage", "siem", "incident-response", "blueteam"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Web Environment",
+    "Intended Audience :: Information Technology",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Security",
+]
+dependencies = [
+    "fastapi>=0.110",
+    "uvicorn>=0.29",
+    "typer>=0.12",
+    "rich>=13.7",
+    "pydantic>=2.6",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "httpx>=0.27",
+]
+
+[project.scripts]
+alertdeck = "alertdeck.cli:app"
+
+[tool.setuptools.packages.find]
+include = ["alertdeck*"]
+
+[tool.setuptools.package-data]
+alertdeck = ["web/*"]

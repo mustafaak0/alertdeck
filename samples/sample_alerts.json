@@ -1,0 +1,63 @@
+[
+  {
+    "source": "wazuh",
+    "rule_name": "Multiple authentication failures (SSH brute force)",
+    "severity": "critical",
+    "detected_at": "2026-11-24T21:14:00Z",
+    "src_ip": "185.220.101.34",
+    "username": "root",
+    "host": "srv-dc-01",
+    "description": "31 failed SSH logins in 5 minutes from a known Tor exit node.",
+    "raw": {"dst_port": 22, "failed_count": 31, "geo": "NL"}
+  },
+  {
+    "source": "okta",
+    "rule_name": "Impossible travel sign-in",
+    "severity": "high",
+    "detected_at": "2026-11-24T18:02:00Z",
+    "username": "a.smith",
+    "description": "Sign-in from Amsterdam 40 minutes after a sign-in from Singapore.",
+    "raw": {"device": "iPhone", "result": "SUCCESS"}
+  },
+  {
+    "source": "suricata",
+    "rule_name": "ET WEB_SERVER Possible web shell upload",
+    "severity": "high",
+    "detected_at": "2026-11-25T02:47:00Z",
+    "src_ip": "45.155.204.9",
+    "dst_ip": "10.0.42.18",
+    "host": "srv-web-05",
+    "description": "POST /upload/cmd.php matched web shell signature.",
+    "raw": {"http_host": "portal.example.com", "sid": 2027856}
+  },
+  {
+    "source": "sysmon",
+    "rule_name": "Credential dumping (LSASS access)",
+    "severity": "critical",
+    "detected_at": "2026-11-25T06:31:00Z",
+    "username": "svc_backup",
+    "host": "ws-fin-014",
+    "description": "rundll32.exe accessed lsass.exe with dump privileges.",
+    "raw": {"process": "rundll32.exe", "event_id": 10}
+  },
+  {
+    "source": "proofpoint",
+    "rule_name": "Phishing email quarantined",
+    "severity": "medium",
+    "detected_at": "2026-11-25T09:12:00Z",
+    "username": "m.kaya",
+    "description": "Credential harvesting link in 'Urgent: payroll update'.",
+    "raw": {"subject": "Urgent: payroll update", "url": "hxxps://payroll-updates[.]example"}
+  },
+  {
+    "source": "fortigate",
+    "rule_name": "Anomalous outbound data volume",
+    "severity": "high",
+    "detected_at": "2026-11-23T23:58:00Z",
+    "src_ip": "10.0.42.51",
+    "dst_ip": "103.76.24.11",
+    "host": "k8s-node-3",
+    "description": "4.2 GB uploaded to an unclassified host over 443 outside business hours.",
+    "raw": {"bytes": 4509715660, "port": 443}
+  }
+]
